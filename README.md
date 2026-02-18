@@ -1,64 +1,100 @@
-# AI Experts Assignment (Python)
+# AI Experts Assignment 
 
-This assignment evaluates your ability to:
+This repository contains my submission for the AI Software Engineer Assignment (Python).
 
-- set up a small Python project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+The project demonstrates:
 
-## What you will do
+* Reproducing and fixing a bug via tests
+* Writing minimal, reviewable fixes
+* Running tests locally and in Docker
+* Dependency pinning for reproducibility
 
-### 1) Dockerfile (required)
+---
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+# Project Structure
 
-Requirements:
+```
+.
+├── app/                # Application source code
+├── tests/              # Test suite
+├── Dockerfile          # Docker configuration
+├── requirements.txt   # Pinned dependencies
+├── Explanation.md     # Bug analysis + fix explanation
+└── README.md
+```
 
-- requirements.txt exists and is used during build (pip install -r requirements.txt)
-- pytest must be included/pinned in requirements.txt
-- The image must run tests by default (use: `CMD ["python", "-m", "pytest", "-v"]`).
-- The build must install dependencies from `requirements.txt`.
+---
 
-### 2) requirements.txt (required)
+# Local Setup & Run Instructions
 
-Create a `requirements.txt` with pinned versions, using this format:
+## 1️ Clone the repository
 
-- `package==x.y.z`
+```bash
+git clone <your-repo-url>
+cd ai-experts-assignment-3
+```
 
-### 3) README updates (required)
+---
 
-Update this README to include:
+## 2️ Create virtual environment
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+```bash
+python -m venv venv
+```
 
-### 4) Find + fix a bug (required)
+Activate it:
 
-There is a bug somewhere in this repository.
+Windows (PowerShell)
 
-Your tasks:
+```powershell
+.\venv\Scripts\activate
+```
 
-- Identify the bug.
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+Git Bash / Linux / Mac
 
-## Constraints
+```bash
+source venv/Scripts/activate
+```
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
+---
 
-### 5) EXPLANATION.md (required)
+## 3️ Install dependencies
 
-Create `EXPLANATION.md` (max 250 words) containing:
+```bash
+pip install -r requirements.txt
+```
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
+---
 
-## Submission
+## 4️ Run tests locally
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+```bash
+pytest -v
+```
+
+# 🐳 Docker Instructions
+
+## 1️ Build Docker image
+
+```bash
+docker build -t ai-assignment .
+```
+
+---
+
+## 2️ Run tests in container
+
+```bash
+docker run --rm ai-assignment
+```
+
+Since the Dockerfile uses:
+
+```
+CMD ["pytest", "-v"]
+```
+
+tests run automatically.
+
+---
+
